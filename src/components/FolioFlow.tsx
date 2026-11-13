@@ -304,7 +304,6 @@ export default function FolioFlow({
                   fill
                   sizes="(max-width: 640px) 260px, (max-width: 1024px) 380px, 460px"
                   priority={isCenter}
-                  quality={92}
                   className="object-cover transition-transform duration-700 hover:scale-105"
                   draggable={false}
                 />

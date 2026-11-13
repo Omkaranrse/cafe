@@ -23,7 +23,6 @@ export default function Hero() {
           alt="Cafe Face Minimal Cream Background"
           fill
           priority
-          quality={95}
           className="object-cover object-center w-full h-full"
         />
       </div>

@@ -65,13 +65,15 @@ export default function InstagramFeed() {
               style={{ position: "relative", minHeight: "180px" }}
               className="group relative aspect-square rounded-[24px] overflow-hidden bg-vanilla border border-latte/50 shadow-soft hover:shadow-deep transition-all duration-500 hover:-translate-y-1 block"
             >
-              <Image
-                src={post.image_url}
-                alt={post.caption}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
-              />
+              <div className="relative w-full h-full min-h-[180px]" style={{ position: "relative", minHeight: "180px" }}>
+                <Image
+                  src={post.image_url}
+                  alt={post.caption}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                />
+              </div>
 
               {/* Hover Dark Overlay with Stats & Caption */}
               <div className="absolute inset-0 bg-noir/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3.5 text-vanilla backdrop-blur-[2px]">
