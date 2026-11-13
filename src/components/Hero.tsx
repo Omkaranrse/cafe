@@ -9,19 +9,18 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] lg:min-h-screen pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 flex flex-col items-center justify-center overflow-x-clip bg-[#F8F1E9]"
+      className="relative w-screen max-w-full h-screen min-h-screen overflow-hidden flex flex-col items-center justify-center bg-[#F8F1E9] pt-16 sm:pt-20 lg:pt-24 pb-4 sm:pb-6"
       style={{
+        width: "100vw",
+        height: "100vh",
+        minHeight: "100vh",
         position: "relative",
-        backgroundImage: "url('/images/hero-minimal-cream-bg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "75% 100%",
-        backgroundRepeat: "no-repeat",
       }}
     >
-      {/* High-Resolution Hero Background Image — Calibrated Saturation & Positioning */}
+      {/* High-Resolution Hero Background Image — 100vw & 100vh */}
       <div
-        className="absolute inset-0 w-full h-full pointer-events-none select-none z-0"
-        style={{ position: "absolute", width: "100%", height: "100%" }}
+        className="absolute inset-0 w-[100vw] h-[100vh] pointer-events-none select-none z-0 overflow-hidden"
+        style={{ position: "absolute", width: "100vw", height: "100vh", top: 0, left: 0 }}
       >
         <Image
           src="/images/hero-minimal-cream-bg.png"
@@ -29,34 +28,36 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[75%_100%] w-full h-full"
+          className="object-cover object-bottom sm:object-[75%_100%] w-full h-full"
           style={{
+            width: "100vw",
+            height: "100vh",
             filter: "saturate(0.85) brightness(1.02) contrast(1.01)",
           }}
         />
       </div>
 
-      {/* Main Content Area */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+      {/* Main Content Area — Centered vertically within 100vh */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center flex-1">
         {/* 1. STEAMING COFFEE CUP ICON WITH SUBTLE ACCENT RULES */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="flex items-center justify-center gap-3 sm:gap-5 mb-2 sm:mb-3"
+          className="flex items-center justify-center gap-3 sm:gap-5 mb-2 sm:mb-2.5"
         >
-          <div className="w-12 sm:w-16 md:w-24 h-[1.2px] bg-[#492512]/30" />
+          <div className="w-10 sm:w-14 md:w-20 h-[1.2px] bg-[#492512]/30" />
           <div className="text-[#492512] flex items-center justify-center">
             <svg
-              width="28"
-              height="28"
+              width="26"
+              height="26"
               viewBox="0 0 32 32"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.9"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="w-6 h-6 sm:w-7 sm:h-7"
+              className="w-5 h-5 sm:w-6 sm:h-6"
             >
               {/* Coffee Cup */}
               <path d="M5 13h17c0 6.5-3.8 11-8.5 11S5 19.5 5 13z" />
@@ -70,7 +71,7 @@ export default function Hero() {
               <path d="M17.5 5c0 2 1.2 2.5 1.2 4" strokeWidth="1.5" />
             </svg>
           </div>
-          <div className="w-12 sm:w-16 md:w-24 h-[1.2px] bg-[#492512]/30" />
+          <div className="w-10 sm:w-14 md:w-20 h-[1.2px] bg-[#492512]/30" />
         </motion.div>
 
         {/* 2. MAIN BRAND TITLE: CENTERED "CAFE FACE" IN ELEGANT SERIF */}
@@ -78,17 +79,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[7.2rem] font-bold text-[#492512] tracking-tight sm:tracking-[0.02em] leading-none mb-10 sm:mb-14 lg:mb-20 select-none"
+          className="text-center font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.2rem] font-bold text-[#492512] tracking-tight sm:tracking-[0.02em] leading-none mb-6 sm:mb-8 lg:mb-10 select-none"
         >
           CAFE FACE
         </motion.h1>
 
-        {/* 3. FOLIOFLOW 3D CURVED IMAGE GALLERY */}
+        {/* 3. FOLIOFLOW CENTERED GALLERY (ALL STRAIGHT CARDS) */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full flex justify-center mt-2 sm:mt-4"
+          className="w-full flex justify-center mt-1 sm:mt-2"
         >
           <FolioFlow />
         </motion.div>

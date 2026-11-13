@@ -166,8 +166,8 @@ export default function FolioFlow({
     }
   };
 
-  // Calculate 3D cylindrical arc transform for each card relative to activeIndex
-  // Enhanced side-card visibility with higher opacity and sharper contrast
+  // Calculate symmetrical straight card positions aligned in center
+  // Left and right cards are completely straight (rotY = 0) with zero tilt
   const getCardTransform = (index: number) => {
     let diff = (index - activeIndex) % total;
     if (diff > total / 2) diff -= total;
@@ -182,9 +182,9 @@ export default function FolioFlow({
     if (diff === 0) {
       return {
         x: 0,
-        z: isMobile ? 30 : 65,
+        z: 0,
         rotY: 0,
-        scale: isMobile ? 1.02 : 1.07,
+        scale: isMobile ? 1.02 : 1.06,
         opacity: 1,
         zIndex: 50,
         filter: "contrast(1.02) brightness(1)",
@@ -192,14 +192,12 @@ export default function FolioFlow({
       };
     }
 
-    const stepX = isMobile ? 90 : isTablet ? 155 : 205;
-    const depthZ = isMobile ? 65 : isTablet ? 95 : 115;
-    const rotY = isMobile ? 20 : isTablet ? 18 : 16;
+    // Straight cards symmetrically spaced from center
+    const stepX = isMobile ? 85 : isTablet ? 135 : 180;
+    const baseX = isMobile ? 100 : isTablet ? 155 : 200;
 
-    const x = sign * (isMobile ? 110 : isTablet ? 165 : 215 + (absDiff - 1) * stepX);
-    const z = -absDiff * depthZ;
-    const rotationY = -sign * (15 + (absDiff - 1) * rotY);
-    const scale = Math.max(0.72, 1 - absDiff * 0.09);
+    const x = sign * (baseX + (absDiff - 1) * stepX);
+    const scale = Math.max(0.74, 1 - absDiff * 0.08);
 
     // Visible side-cards without competing with the center card
     const opacity = absDiff > 3 ? 0 : Math.max(0.78, 1 - absDiff * 0.07);
@@ -211,8 +209,8 @@ export default function FolioFlow({
 
     return {
       x,
-      z,
-      rotY: rotationY,
+      z: 0,
+      rotY: 0, // ALL STRAIGHT: 0deg rotation for all cards!
       scale,
       opacity,
       zIndex,
@@ -230,14 +228,10 @@ export default function FolioFlow({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={`relative w-full select-none flex flex-col items-center ${className}`}
-      style={{ perspective: "1800px" }}
     >
-      {/* 3D Curved Cylindrical Gallery Stage */}
+      {/* Centered Gallery Stage (Straight Cards) */}
       <div
-        className="relative w-full h-[370px] sm:h-[460px] md:h-[520px] lg:h-[580px] flex items-center justify-center overflow-visible"
-        style={{
-          transformStyle: "preserve-3d",
-        }}
+        className="relative w-full h-[320px] sm:h-[380px] md:h-[430px] lg:h-[470px] flex items-center justify-center overflow-visible"
       >
         {/* Subtle natural shadows beneath the floating gallery */}
         <div
@@ -253,7 +247,7 @@ export default function FolioFlow({
           aria-hidden="true"
         />
 
-        {/* Gallery Cards */}
+        {/* Gallery Cards (All Straight, Centered) */}
         {items.map((item, idx) => {
           const transform = getCardTransform(idx);
           const isCenter = (idx - activeIndex) % total === 0;
@@ -265,16 +259,15 @@ export default function FolioFlow({
               initial={false}
               animate={{
                 x: transform.x,
-                z: transform.z,
-                rotateY: transform.rotY,
+                rotateY: 0,
                 scale: transform.scale,
                 opacity: transform.opacity,
                 filter: transform.filter,
               }}
               transition={{
                 type: "spring",
-                stiffness: 220,
-                damping: 26,
+                stiffness: 240,
+                damping: 28,
                 mass: 0.9,
               }}
               style={{
@@ -283,18 +276,17 @@ export default function FolioFlow({
                 top: "50%",
                 zIndex: transform.zIndex,
                 pointerEvents: transform.pointerEvents,
-                transformStyle: "preserve-3d",
               }}
               className="cursor-pointer will-change-transform"
             >
-              {/* Centered Card Box (Consistent proportions & corner radius) */}
+              {/* Centered Straight Card Box */}
               <div
-                className={`-translate-x-1/2 -translate-y-1/2 relative w-[220px] sm:w-[270px] md:w-[320px] lg:w-[360px] h-[300px] sm:h-[370px] md:h-[430px] lg:h-[480px] rounded-[28px] sm:rounded-[36px] overflow-hidden transition-shadow duration-500 ${
+                className={`-translate-x-1/2 -translate-y-1/2 relative w-[200px] sm:w-[250px] md:w-[290px] lg:w-[330px] h-[270px] sm:h-[330px] md:h-[380px] lg:h-[430px] rounded-[24px] sm:rounded-[32px] overflow-hidden transition-shadow duration-500 ${
                   isCenter
                     ? "shadow-[0_24px_50px_-12px_rgba(73,37,18,0.32),0_8px_20px_-6px_rgba(73,37,18,0.18)] ring-1 ring-white/60"
                     : "shadow-[0_16px_36px_-10px_rgba(73,37,18,0.22)] ring-1 ring-white/35"
                 }`}
-                style={{ position: "relative", minHeight: "280px" }}
+                style={{ position: "relative", minHeight: "260px" }}
               >
                 {/* Edge-to-edge Photograph */}
                 <Image
@@ -364,13 +356,13 @@ export default function FolioFlow({
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
-        className="mt-4 sm:mt-6 flex flex-col items-center gap-1.5 pointer-events-none"
+        className="mt-2 sm:mt-3 flex flex-col items-center gap-1 pointer-events-none"
       >
         {/* Mouse outline with animated scroll wheel */}
-        <div className="w-5 h-8 sm:w-6 sm:h-9 rounded-full border-[1.8px] border-[#492512]/45 flex justify-center pt-1.5 bg-[#FFF9F2]/40 backdrop-blur-sm shadow-sm">
+        <div className="w-4.5 h-7 sm:w-5 sm:h-8 rounded-full border-[1.8px] border-[#492512]/45 flex justify-center pt-1.5 bg-[#FFF9F2]/40 backdrop-blur-sm shadow-sm">
           <motion.div
             animate={{
-              y: [0, 8, 0],
+              y: [0, 6, 0],
               opacity: [1, 0.2, 1],
             }}
             transition={{
@@ -378,13 +370,13 @@ export default function FolioFlow({
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="w-1 h-2 rounded-full bg-[#492512]/75"
+            className="w-1 h-1.5 rounded-full bg-[#492512]/75"
           />
         </div>
         {/* Tiny downward chevron */}
         <motion.div
           animate={{
-            y: [0, 3, 0],
+            y: [0, 2, 0],
             opacity: [0.4, 0.9, 0.4],
           }}
           transition={{
@@ -392,7 +384,7 @@ export default function FolioFlow({
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="text-[#492512]/60 text-xs font-semibold"
+          className="text-[#492512]/60 text-xs font-semibold leading-none"
         >
           ⌄
         </motion.div>
