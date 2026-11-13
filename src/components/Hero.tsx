@@ -4,48 +4,36 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import FolioFlow from "./FolioFlow";
-import heroBg from "@/assets/images/Minimal Cream Café Background Design.png";
 
 export default function Hero() {
   return (
     <section
       id="home"
       className="relative min-h-[94vh] lg:min-h-screen pt-32 sm:pt-36 lg:pt-42 pb-16 sm:pb-24 flex flex-col items-center justify-center overflow-hidden bg-[#F8F1E9]"
-      style={{ position: "relative" }}
+      style={{
+        position: "relative",
+        backgroundImage: "url('/images/hero-minimal-cream-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      {/* Background Graphic */}
+      {/* High-Resolution Hero Background Image */}
       <div
-        className="absolute inset-0 w-full h-full pointer-events-none select-none -z-20"
-        style={{ position: "absolute", minHeight: "100%" }}
+        className="absolute inset-0 w-full h-full pointer-events-none select-none z-0"
+        style={{ position: "absolute", width: "100%", height: "100%" }}
       >
         <Image
-          src={heroBg}
+          src="/images/hero-minimal-cream-bg.png"
           alt="Cafe Face Minimal Cream Background"
           fill
           priority
+          sizes="100vw"
           className="object-cover object-center w-full h-full"
         />
       </div>
 
-      {/* Clean Ivory Corner Vignettes (Removes decorative leaf graphics from corners) */}
-      <div
-        className="absolute top-0 left-0 w-80 sm:w-[420px] md:w-[500px] h-80 sm:h-[420px] md:h-[500px] pointer-events-none select-none -z-10"
-        style={{
-          background:
-            "radial-gradient(ellipse at 0% 0%, #F8F1E9 0%, #F8F1E9 55%, rgba(248, 241, 233, 0.9) 70%, transparent 100%)",
-        }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-0 right-0 w-80 sm:w-[460px] md:w-[540px] h-80 sm:h-[460px] md:h-[540px] pointer-events-none select-none -z-10"
-        style={{
-          background:
-            "radial-gradient(ellipse at 100% 100%, #F8F1E9 0%, #F8F1E9 55%, rgba(248, 241, 233, 0.9) 70%, transparent 100%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Main Content Area */}
+      {/* Main Content Area — Sits cleanly above the background */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
         {/* 1. STEAMING COFFEE CUP ICON WITH SUBTLE ACCENT RULES */}
         <motion.div
