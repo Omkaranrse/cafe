@@ -199,7 +199,10 @@ export default function InteractiveMenu() {
                   className="group relative rounded-[32px] overflow-hidden bg-vanilla border border-latte/50 shadow-soft hover:shadow-deep transition-all duration-500 hover:-translate-y-1.5 flex flex-col cursor-pointer"
                 >
                   {/* Photo Container */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-latte/20" style={{ position: "relative" }}>
+                  <div
+                    className="relative aspect-[4/3] w-full overflow-hidden bg-latte/20"
+                    style={{ position: "relative", minHeight: "220px" }}
+                  >
                     <Image
                       src={item.image_url}
                       alt={item.name}

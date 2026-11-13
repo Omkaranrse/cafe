@@ -96,7 +96,10 @@ export default function PhotoStory() {
               transition={{ duration: 0.7, delay: idx * 0.1 }}
               className={`group relative rounded-[32px] overflow-hidden bg-vanilla border border-latte/50 shadow-soft hover:shadow-deep transition-all duration-500 hover:-translate-y-1 ${item.span}`}
             >
-              <div className={`relative w-full ${item.aspect} overflow-hidden`} style={{ position: "relative" }}>
+              <div
+                className={`relative w-full ${item.aspect} overflow-hidden`}
+                style={{ position: "relative", minHeight: "240px" }}
+              >
                 <Image
                   src={item.image}
                   alt={item.title}

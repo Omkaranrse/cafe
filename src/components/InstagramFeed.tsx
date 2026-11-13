@@ -62,7 +62,7 @@ export default function InstagramFeed() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              style={{ position: "relative" }}
+              style={{ position: "relative", minHeight: "180px" }}
               className="group relative aspect-square rounded-[24px] overflow-hidden bg-vanilla border border-latte/50 shadow-soft hover:shadow-deep transition-all duration-500 hover:-translate-y-1 block"
             >
               <Image

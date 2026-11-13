@@ -58,7 +58,7 @@ export default function StorySection() {
           >
             <div
               className="relative aspect-[4/3] sm:aspect-[16/11] rounded-[36px] overflow-hidden border border-white/10 shadow-deep"
-              style={{ position: "relative" }}
+              style={{ position: "relative", minHeight: "320px" }}
             >
               <Image
                 src="/images/cafe-interior-vibe.jpg"

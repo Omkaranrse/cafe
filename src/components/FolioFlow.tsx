@@ -283,7 +283,7 @@ export default function FolioFlow({
                     ? "shadow-[0_28px_60px_-14px_rgba(73,37,18,0.45),0_0_40px_rgba(196,122,67,0.22)] ring-1 ring-white/60"
                     : "shadow-[0_16px_36px_-10px_rgba(73,37,18,0.3)] ring-1 ring-white/30"
                 }`}
-                style={{ position: "relative" }}
+                style={{ position: "relative", minHeight: "290px" }}
               >
                 {/* Edge-to-edge High Definition Photograph */}
                 <Image
