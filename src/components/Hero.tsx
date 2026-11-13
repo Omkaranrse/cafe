@@ -37,42 +37,7 @@ export default function Hero() {
 
       {/* Main Content Area — Centered vertically within 100vh */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center flex-1">
-        {/* 1. STEAMING COFFEE CUP ICON WITH SUBTLE ACCENT RULES */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="flex items-center justify-center gap-3 sm:gap-5 mb-2 sm:mb-2.5"
-        >
-          <div className="w-10 sm:w-14 md:w-20 h-[1.2px] bg-[#492512]/30" />
-          <div className="text-[#492512] flex items-center justify-center">
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 32 32"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.9"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5 sm:w-6 sm:h-6"
-            >
-              {/* Coffee Cup */}
-              <path d="M5 13h17c0 6.5-3.8 11-8.5 11S5 19.5 5 13z" />
-              {/* Cup Handle */}
-              <path d="M22 15h2.5a3.5 3.5 0 0 1 0 7H20.5" />
-              {/* Saucer */}
-              <line x1="3" y1="28" x2="25" y2="28" strokeWidth="1.6" />
-              {/* Steam waves */}
-              <path d="M9.5 5c0 2 1.2 2.5 1.2 4" strokeWidth="1.5" />
-              <path d="M13.5 3c0 2.5 1.5 3.5 1.5 6" strokeWidth="1.5" />
-              <path d="M17.5 5c0 2 1.2 2.5 1.2 4" strokeWidth="1.5" />
-            </svg>
-          </div>
-          <div className="w-10 sm:w-14 md:w-20 h-[1.2px] bg-[#492512]/30" />
-        </motion.div>
-
-        {/* 2. MAIN BRAND TITLE: CENTERED "CAFE FACE" IN ELEGANT SERIF */}
+        {/* MAIN BRAND TITLE: ONLY "CAFE FACE" IN ELEGANT SERIF */}
         <motion.h1
           initial={{ opacity: 0, y: 15, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
