@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Menu as MenuIcon, X } from "lucide-react";
+import { Menu as MenuIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import ParticleNavbar from "./ParticleNavbar";
-import VenomButton from "./VenomButton";
 
 const NAV_LINKS = [
   { label: "Home", link: "#home", active: true },
@@ -39,14 +38,11 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none px-4 sm:px-8 py-3 sm:py-4"
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none px-4 sm:px-8 py-4 sm:py-5"
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between relative h-14 sm:h-16">
-          {/* Symmetrical Left Spacer to ensure exact mathematical balance */}
-          <div className="hidden md:block w-[170px] pointer-events-none" />
-
+        <div className="max-w-7xl mx-auto flex items-center justify-between md:justify-center relative">
           {/* CENTER: ParticleNavbar Floating Pill (Translucent Cream) */}
-          <div className="pointer-events-auto hidden md:block absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+          <div className="pointer-events-auto hidden md:block">
             <ParticleNavbar
               logoText=""
               mark="None"
@@ -57,7 +53,7 @@ export default function Navbar() {
               textColor="#492512"
               hoverTextColor="#C47A43"
               radius="999px"
-              padding="6px 12px 6px 12px"
+              padding="6px 14px 6px 14px"
               gap="22px"
               surface={{
                 fill: "rgba(255, 251, 247, 0.75)",
@@ -75,40 +71,11 @@ export default function Navbar() {
             />
           </div>
 
-          {/* RIGHT: Framer VenomButton (Order Now) & Mobile Hamburger */}
-          <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
-            {/* Desktop / Tablet: 44px height matching ParticleNavbar */}
-            <div className="hidden sm:flex items-center justify-center w-[160px] md:w-[170px] h-[52px]">
-              <VenomButton
-                text="Order Now ↗"
-                link="#menu"
-                buttonHeight={44}
-                sidePadding={22}
-                font={{ fontSize: "14px", fontWeight: 700 }}
-                customCursor={true}
-                onClick={(e: any) => scrollToSection(e, "#menu")}
-                style={{ width: "100%", height: "100%" }}
-              />
-            </div>
-
-            {/* Mobile View: Compact Venom Button */}
-            <div className="flex sm:hidden items-center justify-center w-[130px] h-[46px]">
-              <VenomButton
-                text="Order Now"
-                link="#menu"
-                buttonHeight={38}
-                sidePadding={16}
-                font={{ fontSize: "12px", fontWeight: 700 }}
-                customCursor={false}
-                onClick={(e: any) => scrollToSection(e, "#menu")}
-                style={{ width: "100%", height: "100%" }}
-              />
-            </div>
-
-            {/* Mobile Hamburger Toggle */}
+          {/* Mobile Hamburger Toggle */}
+          <div className="pointer-events-auto md:hidden ml-auto">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden w-10 h-10 rounded-full bg-[#FFF9F2]/90 backdrop-blur-md border border-[#D7BDA5]/50 flex items-center justify-center text-[#492512] shadow-sm cursor-pointer"
+              className="w-10 h-10 rounded-full bg-[#FFF9F2]/90 backdrop-blur-md border border-[#D7BDA5]/50 flex items-center justify-center text-[#492512] shadow-sm cursor-pointer"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <MenuIcon className="w-5 h-5" />}
@@ -142,17 +109,6 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-            </div>
-
-            <div className="pt-2 border-t border-[#D7BDA5]/30 flex flex-col gap-2">
-              <Link
-                href="#menu"
-                onClick={(e) => scrollToSection(e, "#menu")}
-                className="w-full py-3 rounded-full bg-[#492512] text-[#FFF9F2] text-center font-semibold text-sm shadow-md flex items-center justify-center gap-1.5"
-              >
-                <span>Order Now</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </Link>
             </div>
           </motion.div>
         )}
