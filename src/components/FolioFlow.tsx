@@ -15,11 +15,11 @@ export interface FolioFlowItem {
 
 export const DEFAULT_CAFE_ITEMS: FolioFlowItem[] = [
   {
-    id: "interior-window",
-    title: "Window Seating",
-    category: "Ambience",
-    image: "/images/cafe-community.jpg",
-    alt: "Cafe Face sunlit window seating with leafy plants",
+    id: "pour-over-brew",
+    title: "Artisan Pour-Over",
+    category: "Specialty Coffee",
+    image: "/images/cafe-interior-vibe.jpg",
+    alt: "Barista pouring specialty filter coffee through glass Chemex dripper",
   },
   {
     id: "gourmet-pasta",
@@ -36,11 +36,11 @@ export const DEFAULT_CAFE_ITEMS: FolioFlowItem[] = [
     alt: "Velvety textured microfoam latte art in ceramic cup",
   },
   {
-    id: "cafe-main-arched",
+    id: "cafe-main-interior",
     title: "Selly Oak Sanctuary",
-    category: "Atmosphere & Ambience",
-    image: "/images/cafe-interior-vibe.jpg",
-    alt: "Cafe Face arched window interior with warm pendant lamps and greenery",
+    category: "Café Interior",
+    image: "/images/cafe-community.jpg",
+    alt: "Cafe Face warm interior with wooden dining tables, ambient lighting, and cozy seating",
   },
   {
     id: "toasted-panini",
@@ -234,7 +234,7 @@ export default function FolioFlow({
     >
       {/* 3D Curved Cylindrical Gallery Stage */}
       <div
-        className="relative w-full h-[370px] sm:h-[450px] md:h-[510px] lg:h-[560px] flex items-center justify-center overflow-visible"
+        className="relative w-full h-[370px] sm:h-[460px] md:h-[520px] lg:h-[580px] flex items-center justify-center overflow-visible"
         style={{
           transformStyle: "preserve-3d",
         }}
@@ -289,12 +289,12 @@ export default function FolioFlow({
             >
               {/* Centered Card Box (Consistent proportions & corner radius) */}
               <div
-                className={`-translate-x-1/2 -translate-y-1/2 relative w-[230px] sm:w-[280px] md:w-[330px] lg:w-[380px] h-[310px] sm:h-[385px] md:h-[450px] lg:h-[510px] rounded-[28px] sm:rounded-[36px] overflow-hidden transition-shadow duration-500 ${
+                className={`-translate-x-1/2 -translate-y-1/2 relative w-[220px] sm:w-[270px] md:w-[320px] lg:w-[360px] h-[300px] sm:h-[370px] md:h-[430px] lg:h-[480px] rounded-[28px] sm:rounded-[36px] overflow-hidden transition-shadow duration-500 ${
                   isCenter
                     ? "shadow-[0_24px_50px_-12px_rgba(73,37,18,0.32),0_8px_20px_-6px_rgba(73,37,18,0.18)] ring-1 ring-white/60"
                     : "shadow-[0_16px_36px_-10px_rgba(73,37,18,0.22)] ring-1 ring-white/35"
                 }`}
-                style={{ position: "relative", minHeight: "310px" }}
+                style={{ position: "relative", minHeight: "280px" }}
               >
                 {/* Edge-to-edge Photograph */}
                 <Image

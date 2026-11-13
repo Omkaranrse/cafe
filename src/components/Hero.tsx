@@ -78,7 +78,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 15, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[7.2rem] font-bold text-[#492512] tracking-tight sm:tracking-[0.02em] leading-none mb-4 sm:mb-6 select-none"
+          className="text-center font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[7.2rem] font-bold text-[#492512] tracking-tight sm:tracking-[0.02em] leading-none mb-10 sm:mb-14 lg:mb-20 select-none"
         >
           CAFE FACE
         </motion.h1>
@@ -88,7 +88,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full flex justify-center"
+          className="w-full flex justify-center mt-2 sm:mt-4"
         >
           <FolioFlow />
         </motion.div>
