@@ -28,10 +28,8 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-bottom sm:object-[75%_100%] w-full h-full"
+          className="object-cover object-bottom sm:object-[75%_100%]"
           style={{
-            width: "100vw",
-            height: "100vh",
             filter: "saturate(0.85) brightness(1.02) contrast(1.01)",
           }}
         />
