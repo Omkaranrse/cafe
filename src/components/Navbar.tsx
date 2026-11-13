@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight, Menu as MenuIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import ParticleNavbar from "./ParticleNavbar";
+import VenomButton from "./VenomButton";
 
 const NAV_LINKS = [
   { label: "Home", link: "#home", active: true },
@@ -26,7 +27,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const scrollToSection = (e: React.MouseEvent<any>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
     const target = document.querySelector(href);
@@ -38,13 +39,13 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none px-4 sm:px-8 py-4 sm:py-5"
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none px-4 sm:px-8 py-3 sm:py-4"
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between relative">
-          {/* Spacer to balance the right-side Order Now button */}
-          <div className="hidden md:block w-28 pointer-events-none" />
+        <div className="max-w-7xl mx-auto flex items-center justify-between relative h-14 sm:h-16">
+          {/* Symmetrical Left Spacer to ensure exact mathematical balance */}
+          <div className="hidden md:block w-[170px] pointer-events-none" />
 
-          {/* CENTER: ParticleNavbar Floating Pill (Refined Translucent Cream) */}
+          {/* CENTER: ParticleNavbar Floating Pill (Translucent Cream) */}
           <div className="pointer-events-auto hidden md:block absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
             <ParticleNavbar
               logoText=""
@@ -56,10 +57,10 @@ export default function Navbar() {
               textColor="#492512"
               hoverTextColor="#C47A43"
               radius="999px"
-              padding="6px 10px 6px 10px"
+              padding="6px 12px 6px 12px"
               gap="22px"
               surface={{
-                fill: "rgba(255, 251, 247, 0.72)",
+                fill: "rgba(255, 251, 247, 0.75)",
                 blur: 20,
                 shadow: "0 8px 30px -8px rgba(73, 37, 18, 0.08)",
               }}
@@ -74,16 +75,35 @@ export default function Navbar() {
             />
           </div>
 
-          {/* RIGHT: Order Now Button & Mobile Hamburger */}
-          <div className="pointer-events-auto flex items-center gap-2">
-            <Link
-              href="#menu"
-              onClick={(e) => scrollToSection(e, "#menu")}
-              className="px-5 sm:px-6 py-2.5 rounded-full bg-[#492512] text-[#FFF9F2] text-sm font-semibold tracking-wide shadow-[0_8px_20px_-4px_rgba(73,37,18,0.3)] transition-all duration-300 hover:bg-[#351B11] hover:scale-105 active:scale-95 flex items-center gap-1.5 border border-white/20"
-            >
-              <span>Order Now</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
+          {/* RIGHT: Framer VenomButton (Order Now) & Mobile Hamburger */}
+          <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+            {/* Desktop / Tablet: 44px height matching ParticleNavbar */}
+            <div className="hidden sm:flex items-center justify-center w-[160px] md:w-[170px] h-[52px]">
+              <VenomButton
+                text="Order Now ↗"
+                link="#menu"
+                buttonHeight={44}
+                sidePadding={22}
+                font={{ fontSize: "14px", fontWeight: 700 }}
+                customCursor={true}
+                onClick={(e: any) => scrollToSection(e, "#menu")}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+
+            {/* Mobile View: Compact Venom Button */}
+            <div className="flex sm:hidden items-center justify-center w-[130px] h-[46px]">
+              <VenomButton
+                text="Order Now"
+                link="#menu"
+                buttonHeight={38}
+                sidePadding={16}
+                font={{ fontSize: "12px", fontWeight: 700 }}
+                customCursor={false}
+                onClick={(e: any) => scrollToSection(e, "#menu")}
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
 
             {/* Mobile Hamburger Toggle */}
             <button
