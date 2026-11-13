@@ -62,6 +62,7 @@ export default function Hero() {
             duration={2.0}
             stagger={0.14}
             delay={0.15}
+            startAt={0.85}
             easing="power3.out"
             fit="contain"
             style={{ width: "100%", height: "100%" }}
