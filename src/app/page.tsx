@@ -4,6 +4,7 @@ import MoodExplorer from "@/components/MoodExplorer";
 import StorySection from "@/components/StorySection";
 import InteractiveMenu from "@/components/InteractiveMenu";
 import PhotoStory from "@/components/PhotoStory";
+import GoogleReviews from "@/components/GoogleReviews";
 import InstagramFeed from "@/components/InstagramFeed";
 import VisitUs from "@/components/VisitUs";
 import Footer from "@/components/Footer";
@@ -31,14 +32,17 @@ export default function Home() {
         {/* Section 5: Signature Experience Photo Story */}
         <PhotoStory />
 
-        {/* Section 6: Instagram Visual Feed */}
+        {/* Section 6: Google Reviews Interactive Corkboard */}
+        <GoogleReviews />
+
+        {/* Section 7: Instagram Visual Feed */}
         <InstagramFeed />
 
-        {/* Section 7: Visit Us & Contact Section */}
+        {/* Section 8: Visit Us & Contact Section */}
         <VisitUs />
       </main>
 
-      {/* Section 8: Oversized Editorial Footer */}
+      {/* Section 9: Oversized Editorial Footer */}
       <Footer />
     </div>
   );
