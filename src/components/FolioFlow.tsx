@@ -76,7 +76,7 @@ export interface FolioFlowProps {
 
 export default function FolioFlow({
   items = DEFAULT_CAFE_ITEMS,
-  startIndex = 3, // Centered on the arched interior
+  startIndex = 3, // Centered on the arched café interior
   autoplay = false,
   interval = 4,
   pauseOnHover = true,
@@ -182,9 +182,9 @@ export default function FolioFlow({
     if (diff === 0) {
       return {
         x: 0,
-        z: isMobile ? 35 : 70,
+        z: isMobile ? 30 : 65,
         rotY: 0,
-        scale: isMobile ? 1.03 : 1.08,
+        scale: isMobile ? 1.02 : 1.07,
         opacity: 1,
         zIndex: 50,
         filter: "contrast(1.02) brightness(1)",
@@ -192,21 +192,20 @@ export default function FolioFlow({
       };
     }
 
-    // Increased scale by ~12-15% and improved side-card spacing
-    const stepX = isMobile ? 95 : isTablet ? 165 : 220;
-    const depthZ = isMobile ? 65 : isTablet ? 100 : 120;
+    const stepX = isMobile ? 90 : isTablet ? 155 : 205;
+    const depthZ = isMobile ? 65 : isTablet ? 95 : 115;
     const rotY = isMobile ? 20 : isTablet ? 18 : 16;
 
-    const x = sign * (isMobile ? 115 : isTablet ? 175 : 225 + (absDiff - 1) * stepX);
+    const x = sign * (isMobile ? 110 : isTablet ? 165 : 215 + (absDiff - 1) * stepX);
     const z = -absDiff * depthZ;
     const rotationY = -sign * (15 + (absDiff - 1) * rotY);
     const scale = Math.max(0.72, 1 - absDiff * 0.09);
 
-    // Significantly reduced opacity drop: side cards stay crisp and clearly visible
+    // Visible side-cards without competing with the center card
     const opacity = absDiff > 3 ? 0 : Math.max(0.78, 1 - absDiff * 0.07);
 
-    // Strong contrast and no excessive darkening
-    const brightness = Math.max(0.92, 1 - absDiff * 0.03);
+    // Enhanced sharpness and contrast
+    const brightness = Math.max(0.95, 1 - absDiff * 0.02);
     const contrast = 1.04;
     const zIndex = 50 - absDiff * 10;
 
@@ -233,24 +232,24 @@ export default function FolioFlow({
       className={`relative w-full select-none flex flex-col items-center ${className}`}
       style={{ perspective: "1800px" }}
     >
-      {/* 3D Curved Cylindrical Gallery Stage (Increased height by ~12-15%) */}
+      {/* 3D Curved Cylindrical Gallery Stage */}
       <div
-        className="relative w-full h-[390px] sm:h-[480px] md:h-[550px] lg:h-[600px] flex items-center justify-center overflow-visible"
+        className="relative w-full h-[370px] sm:h-[450px] md:h-[510px] lg:h-[560px] flex items-center justify-center overflow-visible"
         style={{
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Subtle, natural organic shadows beneath the floating gallery */}
+        {/* Subtle natural shadows beneath the floating gallery */}
         <div
-          className="absolute -bottom-2 sm:bottom-1 left-1/2 -translate-x-1/2 w-[72%] max-w-[950px] h-[36px] sm:h-[48px] rounded-[100%] bg-[#3A2218]/15 blur-2xl pointer-events-none -z-10"
+          className="absolute -bottom-2 sm:bottom-1 left-1/2 -translate-x-1/2 w-[72%] max-w-[950px] h-[36px] sm:h-[48px] rounded-[100%] bg-[#3A2218]/12 blur-2xl pointer-events-none -z-10"
           aria-hidden="true"
         />
         <div
-          className="absolute bottom-2 sm:bottom-5 left-1/2 -translate-x-1/2 w-[55%] max-w-[700px] h-[24px] sm:h-[32px] rounded-[100%] bg-[#C47A43]/16 blur-xl pointer-events-none -z-10"
+          className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 w-[55%] max-w-[700px] h-[24px] sm:h-[32px] rounded-[100%] bg-[#C47A43]/14 blur-xl pointer-events-none -z-10"
           aria-hidden="true"
         />
         <div
-          className="absolute bottom-4 sm:bottom-7 left-1/2 -translate-x-1/2 w-[38%] max-w-[450px] h-[16px] sm:h-[22px] rounded-[100%] bg-[#2A1712]/18 blur-md pointer-events-none -z-10"
+          className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 w-[38%] max-w-[420px] h-[16px] sm:h-[20px] rounded-[100%] bg-[#2A1712]/15 blur-md pointer-events-none -z-10"
           aria-hidden="true"
         />
 
@@ -288,33 +287,33 @@ export default function FolioFlow({
               }}
               className="cursor-pointer will-change-transform"
             >
-              {/* Centered Card Box (10–15% larger dimensions) */}
+              {/* Centered Card Box (Consistent proportions & corner radius) */}
               <div
-                className={`-translate-x-1/2 -translate-y-1/2 relative w-[235px] sm:w-[305px] md:w-[365px] lg:w-[410px] h-[325px] sm:h-[415px] md:h-[495px] lg:h-[545px] rounded-[26px] sm:rounded-[34px] overflow-hidden transition-shadow duration-500 ${
+                className={`-translate-x-1/2 -translate-y-1/2 relative w-[230px] sm:w-[280px] md:w-[330px] lg:w-[380px] h-[310px] sm:h-[385px] md:h-[450px] lg:h-[510px] rounded-[28px] sm:rounded-[36px] overflow-hidden transition-shadow duration-500 ${
                   isCenter
-                    ? "shadow-[0_28px_56px_-12px_rgba(58,34,24,0.38),0_10px_24px_-6px_rgba(58,34,24,0.22)] ring-1 ring-white/60"
-                    : "shadow-[0_18px_40px_-10px_rgba(58,34,24,0.26)] ring-1 ring-white/35"
+                    ? "shadow-[0_24px_50px_-12px_rgba(73,37,18,0.32),0_8px_20px_-6px_rgba(73,37,18,0.18)] ring-1 ring-white/60"
+                    : "shadow-[0_16px_36px_-10px_rgba(73,37,18,0.22)] ring-1 ring-white/35"
                 }`}
-                style={{ position: "relative", minHeight: "325px" }}
+                style={{ position: "relative", minHeight: "310px" }}
               >
-                {/* Edge-to-edge High Definition Photograph (Sharp & clear) */}
+                {/* Edge-to-edge Photograph */}
                 <Image
                   src={item.image}
                   alt={item.alt}
                   fill
-                  sizes="(max-width: 640px) 260px, (max-width: 1024px) 380px, 460px"
+                  sizes="(max-width: 640px) 250px, (max-width: 1024px) 350px, 420px"
                   priority={isCenter}
                   className="object-cover transition-transform duration-700 hover:scale-105"
                   draggable={false}
                 />
 
-                {/* Subtle Glassmorphic Specular Rim Light */}
+                {/* Subtle Specular Rim Light */}
                 <div
-                  className="absolute inset-0 rounded-[26px] sm:rounded-[34px] pointer-events-none bg-gradient-to-t from-[#2A1712]/30 via-transparent to-white/20"
+                  className="absolute inset-0 rounded-[28px] sm:rounded-[36px] pointer-events-none bg-gradient-to-t from-[#2A1712]/30 via-transparent to-white/20"
                   aria-hidden="true"
                 />
 
-                {/* Active Card Subtle Label Overlay (Bottom) */}
+                {/* Active Card Label Overlay */}
                 {isCenter && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -342,7 +341,7 @@ export default function FolioFlow({
             prevSlide();
           }}
           aria-label="Previous photograph"
-          className="absolute left-2 sm:left-6 lg:left-10 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/90 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
+          className="absolute left-2 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/90 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
         </button>
@@ -354,7 +353,7 @@ export default function FolioFlow({
             nextSlide();
           }}
           aria-label="Next photograph"
-          className="absolute right-2 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/90 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
+          className="absolute right-2 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/90 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
         </button>
@@ -365,7 +364,7 @@ export default function FolioFlow({
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
-        className="mt-6 sm:mt-8 flex flex-col items-center gap-1.5 pointer-events-none"
+        className="mt-4 sm:mt-6 flex flex-col items-center gap-1.5 pointer-events-none"
       >
         {/* Mouse outline with animated scroll wheel */}
         <div className="w-5 h-8 sm:w-6 sm:h-9 rounded-full border-[1.8px] border-[#492512]/45 flex justify-center pt-1.5 bg-[#FFF9F2]/40 backdrop-blur-sm shadow-sm">
