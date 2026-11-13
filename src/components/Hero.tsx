@@ -10,12 +10,12 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] lg:min-h-screen pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-24 flex flex-col items-center justify-center overflow-hidden bg-[#F8F1E9]"
+      className="relative min-h-[94vh] lg:min-h-screen pt-32 sm:pt-36 lg:pt-42 pb-16 sm:pb-24 flex flex-col items-center justify-center overflow-hidden bg-[#F8F1E9]"
       style={{ position: "relative" }}
     >
-      {/* Background Design Image */}
+      {/* Background Graphic */}
       <div
-        className="absolute inset-0 w-full h-full pointer-events-none select-none -z-10"
+        className="absolute inset-0 w-full h-full pointer-events-none select-none -z-20"
         style={{ position: "absolute", minHeight: "100%" }}
       >
         <Image
@@ -27,6 +27,24 @@ export default function Hero() {
           className="object-cover object-center w-full h-full"
         />
       </div>
+
+      {/* Clean Ivory Corner Vignettes (Removes decorative leaf graphics from corners) */}
+      <div
+        className="absolute top-0 left-0 w-80 sm:w-[420px] md:w-[500px] h-80 sm:h-[420px] md:h-[500px] pointer-events-none select-none -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse at 0% 0%, #F8F1E9 0%, #F8F1E9 55%, rgba(248, 241, 233, 0.9) 70%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-0 right-0 w-80 sm:w-[460px] md:w-[540px] h-80 sm:h-[460px] md:h-[540px] pointer-events-none select-none -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse at 100% 100%, #F8F1E9 0%, #F8F1E9 55%, rgba(248, 241, 233, 0.9) 70%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
 
       {/* Main Content Area */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
@@ -65,7 +83,7 @@ export default function Hero() {
           <div className="w-12 sm:w-16 md:w-24 h-[1.2px] bg-[#492512]/35" />
         </motion.div>
 
-        {/* 2. MAIN BRAND TITLE: ONLY "CAFE FACE" */}
+        {/* 2. MAIN BRAND TITLE: ONLY "CAFE FACE" IN ELEGANT SERIF */}
         <motion.h1
           initial={{ opacity: 0, y: 15, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}

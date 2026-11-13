@@ -38,7 +38,7 @@ export const DEFAULT_CAFE_ITEMS: FolioFlowItem[] = [
   {
     id: "cafe-main-arched",
     title: "Selly Oak Sanctuary",
-    category: "Atmosphere",
+    category: "Atmosphere & Ambience",
     image: "/images/cafe-interior-vibe.jpg",
     alt: "Cafe Face arched window interior with warm pendant lamps and greenery",
   },
@@ -167,6 +167,7 @@ export default function FolioFlow({
   };
 
   // Calculate 3D cylindrical arc transform for each card relative to activeIndex
+  // Enhanced side-card visibility with higher opacity and sharper contrast
   const getCardTransform = (index: number) => {
     let diff = (index - activeIndex) % total;
     if (diff > total / 2) diff -= total;
@@ -181,26 +182,32 @@ export default function FolioFlow({
     if (diff === 0) {
       return {
         x: 0,
-        z: isMobile ? 30 : 60,
+        z: isMobile ? 35 : 70,
         rotY: 0,
-        scale: isMobile ? 1.02 : 1.06,
+        scale: isMobile ? 1.03 : 1.08,
         opacity: 1,
         zIndex: 50,
-        filter: "brightness(1)",
+        filter: "contrast(1.02) brightness(1)",
         pointerEvents: "auto" as const,
       };
     }
 
-    const stepX = isMobile ? 85 : isTablet ? 145 : 190;
-    const depthZ = isMobile ? 70 : isTablet ? 110 : 130;
-    const rotY = isMobile ? 22 : isTablet ? 20 : 18;
+    // Increased scale by ~12-15% and improved side-card spacing
+    const stepX = isMobile ? 95 : isTablet ? 165 : 220;
+    const depthZ = isMobile ? 65 : isTablet ? 100 : 120;
+    const rotY = isMobile ? 20 : isTablet ? 18 : 16;
 
-    const x = sign * (isMobile ? 105 : isTablet ? 155 : 195 + (absDiff - 1) * stepX);
+    const x = sign * (isMobile ? 115 : isTablet ? 175 : 225 + (absDiff - 1) * stepX);
     const z = -absDiff * depthZ;
-    const rotationY = -sign * (16 + (absDiff - 1) * rotY);
-    const scale = Math.max(0.68, 1 - absDiff * 0.1);
-    const opacity = absDiff > 3 ? 0 : Math.max(0.45, 1 - absDiff * 0.16);
-    const brightness = Math.max(0.65, 1 - absDiff * 0.12);
+    const rotationY = -sign * (15 + (absDiff - 1) * rotY);
+    const scale = Math.max(0.72, 1 - absDiff * 0.09);
+
+    // Significantly reduced opacity drop: side cards stay crisp and clearly visible
+    const opacity = absDiff > 3 ? 0 : Math.max(0.78, 1 - absDiff * 0.07);
+
+    // Strong contrast and no excessive darkening
+    const brightness = Math.max(0.92, 1 - absDiff * 0.03);
+    const contrast = 1.04;
     const zIndex = 50 - absDiff * 10;
 
     return {
@@ -210,7 +217,7 @@ export default function FolioFlow({
       scale,
       opacity,
       zIndex,
-      filter: `brightness(${brightness})`,
+      filter: `brightness(${brightness}) contrast(${contrast})`,
       pointerEvents: absDiff > 3 ? ("none" as const) : ("auto" as const),
     };
   };
@@ -226,20 +233,24 @@ export default function FolioFlow({
       className={`relative w-full select-none flex flex-col items-center ${className}`}
       style={{ perspective: "1800px" }}
     >
-      {/* 3D Curved Cylindrical Gallery Stage */}
+      {/* 3D Curved Cylindrical Gallery Stage (Increased height by ~12-15%) */}
       <div
-        className="relative w-full h-[360px] sm:h-[440px] md:h-[500px] lg:h-[540px] flex items-center justify-center overflow-visible"
+        className="relative w-full h-[390px] sm:h-[480px] md:h-[550px] lg:h-[600px] flex items-center justify-center overflow-visible"
         style={{
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Soft floor shadow & warm ambient reflection under center card */}
+        {/* Subtle, natural organic shadows beneath the floating gallery */}
         <div
-          className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 w-[340px] sm:w-[440px] lg:w-[500px] h-[70px] sm:h-[100px] rounded-[100%] bg-gradient-to-r from-transparent via-[#C47A43]/30 to-transparent blur-3xl pointer-events-none -z-10"
+          className="absolute -bottom-2 sm:bottom-1 left-1/2 -translate-x-1/2 w-[72%] max-w-[950px] h-[36px] sm:h-[48px] rounded-[100%] bg-[#3A2218]/15 blur-2xl pointer-events-none -z-10"
           aria-hidden="true"
         />
         <div
-          className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 w-[280px] sm:w-[380px] h-[32px] sm:h-[42px] rounded-[100%] bg-[#2A1712]/20 blur-xl pointer-events-none -z-10"
+          className="absolute bottom-2 sm:bottom-5 left-1/2 -translate-x-1/2 w-[55%] max-w-[700px] h-[24px] sm:h-[32px] rounded-[100%] bg-[#C47A43]/16 blur-xl pointer-events-none -z-10"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute bottom-4 sm:bottom-7 left-1/2 -translate-x-1/2 w-[38%] max-w-[450px] h-[16px] sm:h-[22px] rounded-[100%] bg-[#2A1712]/18 blur-md pointer-events-none -z-10"
           aria-hidden="true"
         />
 
@@ -277,29 +288,30 @@ export default function FolioFlow({
               }}
               className="cursor-pointer will-change-transform"
             >
-              {/* Centered Card Box */}
+              {/* Centered Card Box (10–15% larger dimensions) */}
               <div
-                className={`-translate-x-1/2 -translate-y-1/2 relative w-[210px] sm:w-[270px] md:w-[320px] lg:w-[360px] h-[290px] sm:h-[370px] md:h-[440px] lg:h-[480px] rounded-[24px] sm:rounded-[32px] overflow-hidden transition-shadow duration-500 ${
+                className={`-translate-x-1/2 -translate-y-1/2 relative w-[235px] sm:w-[305px] md:w-[365px] lg:w-[410px] h-[325px] sm:h-[415px] md:h-[495px] lg:h-[545px] rounded-[26px] sm:rounded-[34px] overflow-hidden transition-shadow duration-500 ${
                   isCenter
-                    ? "shadow-[0_28px_60px_-14px_rgba(73,37,18,0.45),0_0_40px_rgba(196,122,67,0.22)] ring-1 ring-white/60"
-                    : "shadow-[0_16px_36px_-10px_rgba(73,37,18,0.3)] ring-1 ring-white/30"
+                    ? "shadow-[0_28px_56px_-12px_rgba(58,34,24,0.38),0_10px_24px_-6px_rgba(58,34,24,0.22)] ring-1 ring-white/60"
+                    : "shadow-[0_18px_40px_-10px_rgba(58,34,24,0.26)] ring-1 ring-white/35"
                 }`}
-                style={{ position: "relative", minHeight: "290px" }}
+                style={{ position: "relative", minHeight: "325px" }}
               >
-                {/* Edge-to-edge High Definition Photograph */}
+                {/* Edge-to-edge High Definition Photograph (Sharp & clear) */}
                 <Image
                   src={item.image}
                   alt={item.alt}
                   fill
-                  sizes="(max-width: 640px) 240px, (max-width: 1024px) 340px, 400px"
+                  sizes="(max-width: 640px) 260px, (max-width: 1024px) 380px, 460px"
                   priority={isCenter}
+                  quality={92}
                   className="object-cover transition-transform duration-700 hover:scale-105"
                   draggable={false}
                 />
 
                 {/* Subtle Glassmorphic Specular Rim Light */}
                 <div
-                  className="absolute inset-0 rounded-[24px] sm:rounded-[32px] pointer-events-none bg-gradient-to-t from-[#2A1712]/30 via-transparent to-white/20"
+                  className="absolute inset-0 rounded-[26px] sm:rounded-[34px] pointer-events-none bg-gradient-to-t from-[#2A1712]/30 via-transparent to-white/20"
                   aria-hidden="true"
                 />
 
@@ -309,12 +321,12 @@ export default function FolioFlow({
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }}
-                    className="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-[#2A1712]/80 via-[#2A1712]/30 to-transparent flex flex-col pointer-events-none"
+                    className="absolute bottom-0 inset-x-0 p-5 sm:p-6 bg-gradient-to-t from-[#2A1712]/80 via-[#2A1712]/30 to-transparent flex flex-col pointer-events-none"
                   >
                     <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#D7BDA5]">
                       {item.category}
                     </span>
-                    <span className="text-white font-serif text-lg sm:text-xl font-medium tracking-wide">
+                    <span className="text-white font-serif text-lg sm:text-2xl font-medium tracking-wide">
                       {item.title}
                     </span>
                   </motion.div>
@@ -331,7 +343,7 @@ export default function FolioFlow({
             prevSlide();
           }}
           aria-label="Previous photograph"
-          className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/85 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
+          className="absolute left-2 sm:left-6 lg:left-10 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/90 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
         </button>
@@ -343,7 +355,7 @@ export default function FolioFlow({
             nextSlide();
           }}
           aria-label="Next photograph"
-          className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/85 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
+          className="absolute right-2 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/90 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
         </button>
@@ -354,7 +366,7 @@ export default function FolioFlow({
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
-        className="mt-4 sm:mt-6 flex flex-col items-center gap-1.5 pointer-events-none"
+        className="mt-6 sm:mt-8 flex flex-col items-center gap-1.5 pointer-events-none"
       >
         {/* Mouse outline with animated scroll wheel */}
         <div className="w-5 h-8 sm:w-6 sm:h-9 rounded-full border-[1.8px] border-[#492512]/45 flex justify-center pt-1.5 bg-[#FFF9F2]/40 backdrop-blur-sm shadow-sm">

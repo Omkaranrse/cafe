@@ -38,7 +38,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none px-4 sm:px-8 py-4 sm:py-5`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none px-4 sm:px-8 py-4 sm:py-5"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* LEFT: Coffee Cup Badge Button */}
@@ -47,13 +47,13 @@ export default function Navbar() {
               href="#home"
               onClick={(e) => scrollToSection(e, "#home")}
               aria-label="Cafe Face Home"
-              className="w-11 h-11 rounded-full bg-[#492512] text-[#FFF9F2] shadow-md flex items-center justify-center transition-all duration-300 hover:scale-105 hover:bg-[#351B11] active:scale-95 group"
+              className="w-11 h-11 rounded-full bg-[#492512] text-[#FFF9F2] shadow-[0_8px_20px_-4px_rgba(73,37,18,0.3)] flex items-center justify-center transition-all duration-300 hover:scale-105 hover:bg-[#351B11] active:scale-95 group border border-white/20"
             >
               <Coffee className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6 text-[#FFF9F2]" />
             </Link>
           </div>
 
-          {/* CENTER: ParticleNavbar Floating Pill */}
+          {/* CENTER: ParticleNavbar Floating Pill (Refined Translucent Cream) */}
           <div className="pointer-events-auto hidden md:block">
             <ParticleNavbar
               logoText=""
@@ -65,20 +65,20 @@ export default function Navbar() {
               textColor="#492512"
               hoverTextColor="#C47A43"
               radius="999px"
-              padding="6px 8px 6px 8px"
-              gap="24px"
+              padding="6px 10px 6px 10px"
+              gap="22px"
               surface={{
-                fill: "rgba(255, 249, 242, 0.78)",
-                blur: 18,
-                shadow: "0 10px 30px -10px rgba(73, 37, 18, 0.12)",
+                fill: "rgba(255, 251, 247, 0.72)",
+                blur: 20,
+                shadow: "0 8px 30px -8px rgba(73, 37, 18, 0.08)",
               }}
               particles={{
                 color: "#C47A43",
                 hoverColor: "#C47A43",
-                density: 1.2,
-                size: 1.4,
-                glow: 0.6,
-                twinkle: 0.6,
+                density: 1.1,
+                size: 1.3,
+                glow: 0.5,
+                twinkle: 0.5,
               }}
             />
           </div>
@@ -88,7 +88,7 @@ export default function Navbar() {
             <Link
               href="#menu"
               onClick={(e) => scrollToSection(e, "#menu")}
-              className="px-5 sm:px-6 py-2.5 rounded-full bg-[#492512] text-[#FFF9F2] text-sm font-semibold tracking-wide shadow-md transition-all duration-300 hover:bg-[#351B11] hover:scale-105 active:scale-95 flex items-center gap-1.5"
+              className="px-5 sm:px-6 py-2.5 rounded-full bg-[#492512] text-[#FFF9F2] text-sm font-semibold tracking-wide shadow-[0_8px_20px_-4px_rgba(73,37,18,0.3)] transition-all duration-300 hover:bg-[#351B11] hover:scale-105 active:scale-95 flex items-center gap-1.5 border border-white/20"
             >
               <span>Order Now</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -97,7 +97,7 @@ export default function Navbar() {
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden w-10 h-10 rounded-full bg-[#FFF9F2]/80 backdrop-blur-md border border-[#D7BDA5]/50 flex items-center justify-center text-[#492512] shadow-sm"
+              className="md:hidden w-10 h-10 rounded-full bg-[#FFF9F2]/90 backdrop-blur-md border border-[#D7BDA5]/50 flex items-center justify-center text-[#492512] shadow-sm cursor-pointer"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <MenuIcon className="w-5 h-5" />}
