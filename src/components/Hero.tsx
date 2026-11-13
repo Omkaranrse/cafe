@@ -82,12 +82,12 @@ export default function Hero() {
           CAFE FACE
         </motion.h1>
 
-        {/* 3. FOLIOFLOW CENTERED GALLERY (ALL STRAIGHT CARDS) */}
+        {/* 3. ACTUAL FRAMER FOLIOFLOW COMPONENT */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full flex justify-center mt-1 sm:mt-2"
+          className="w-full max-w-5xl h-[380px] sm:h-[440px] md:h-[490px] lg:h-[530px] flex justify-center mt-1 sm:mt-2 relative z-10"
         >
           <FolioFlow />
         </motion.div>
