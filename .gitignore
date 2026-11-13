@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Reference files & temporary test screenshots
+reference_recording.mov
+reference_frames/
+*.png
+!public/previews/*.png
