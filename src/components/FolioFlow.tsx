@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export interface FolioFlowItem {
@@ -168,7 +168,6 @@ export default function FolioFlow({
 
   // Calculate 3D cylindrical arc transform for each card relative to activeIndex
   const getCardTransform = (index: number) => {
-    // Cyclic shortest distance: -3 to +3
     let diff = (index - activeIndex) % total;
     if (diff > total / 2) diff -= total;
     if (diff < -total / 2) diff += total;
@@ -192,12 +191,11 @@ export default function FolioFlow({
       };
     }
 
-    // Step spacing, depth, and rotation based on screen width
-    const stepX = isMobile ? 80 : isTablet ? 135 : 180;
+    const stepX = isMobile ? 85 : isTablet ? 145 : 190;
     const depthZ = isMobile ? 70 : isTablet ? 110 : 130;
     const rotY = isMobile ? 22 : isTablet ? 20 : 18;
 
-    const x = sign * (isMobile ? 100 : isTablet ? 145 : 185 + (absDiff - 1) * stepX);
+    const x = sign * (isMobile ? 105 : isTablet ? 155 : 195 + (absDiff - 1) * stepX);
     const z = -absDiff * depthZ;
     const rotationY = -sign * (16 + (absDiff - 1) * rotY);
     const scale = Math.max(0.68, 1 - absDiff * 0.1);
@@ -230,7 +228,7 @@ export default function FolioFlow({
     >
       {/* 3D Curved Cylindrical Gallery Stage */}
       <div
-        className="relative w-full h-[360px] sm:h-[440px] md:h-[500px] lg:h-[540px] flex items-center justify-center"
+        className="relative w-full h-[360px] sm:h-[440px] md:h-[500px] lg:h-[540px] flex items-center justify-center overflow-visible"
         style={{
           transformStyle: "preserve-3d",
         }}
@@ -270,15 +268,18 @@ export default function FolioFlow({
                 mass: 0.9,
               }}
               style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
                 zIndex: transform.zIndex,
                 pointerEvents: transform.pointerEvents,
                 transformStyle: "preserve-3d",
               }}
-              className="absolute cursor-pointer will-change-transform"
+              className="cursor-pointer will-change-transform"
             >
-              {/* Card Container */}
+              {/* Centered Card Box */}
               <div
-                className={`relative w-[210px] sm:w-[270px] md:w-[320px] lg:w-[360px] h-[290px] sm:h-[370px] md:h-[440px] lg:h-[480px] rounded-[24px] sm:rounded-[32px] overflow-hidden transition-shadow duration-500 ${
+                className={`-translate-x-1/2 -translate-y-1/2 relative w-[210px] sm:w-[270px] md:w-[320px] lg:w-[360px] h-[290px] sm:h-[370px] md:h-[440px] lg:h-[480px] rounded-[24px] sm:rounded-[32px] overflow-hidden transition-shadow duration-500 ${
                   isCenter
                     ? "shadow-[0_28px_60px_-14px_rgba(73,37,18,0.45),0_0_40px_rgba(196,122,67,0.22)] ring-1 ring-white/60"
                     : "shadow-[0_16px_36px_-10px_rgba(73,37,18,0.3)] ring-1 ring-white/30"
@@ -330,7 +331,7 @@ export default function FolioFlow({
             prevSlide();
           }}
           aria-label="Previous photograph"
-          className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/85 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60"
+          className="absolute left-2 sm:left-6 lg:left-12 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/85 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
         </button>
@@ -342,7 +343,7 @@ export default function FolioFlow({
             nextSlide();
           }}
           aria-label="Next photograph"
-          className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/85 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60"
+          className="absolute right-2 sm:right-6 lg:right-12 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#FFF9F2]/85 hover:bg-[#FFF9F2] text-[#492512] shadow-lg backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border border-white/60 cursor-pointer"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.2]" />
         </button>

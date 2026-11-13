@@ -132,7 +132,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen pt-28 sm:pt-32 pb-16 sm:pb-24 flex flex-col items-center justify-center overflow-hidden bg-[#F8F1E9]"
+      className="relative min-h-[92vh] lg:min-h-screen pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-24 flex flex-col items-center justify-center overflow-hidden bg-[#F8F1E9]"
       style={{ position: "relative" }}
     >
       {/* Botanical Corner Silhouettes */}
